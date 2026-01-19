@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love 🤍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#fff8f0;font-family:Poppins,sans-serif;color:#333}
+
+/* COMMON */
+.page{min-height:100vh;display:none;justify-content:center;align-items:center;text-align:center;padding:30px 20px;}
+.page.active{display:flex}
+
+/* TEXT */
+.small{font-size:13px;letter-spacing:1px;color:#b5a9a0}
+.title{font-family:'Playfair Display',serif;font-size:40px;margin:10px 0}
+.title span{color:#e85a70}
+.subtitle{font-size:15px;color:#666;margin-bottom:24px}
+
+/* HEART */
+.heart-box{position:relative;width:170px;height:165px;margin:0 auto 22px}
+.heart-img{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  max-width:130px;
+  max-height:170px;
+  object-fit:contain;
+  z-index:1;
+}
+.heart-svg{position:absolute;inset:0;z-index:2}
+.heart-svg path{
+  fill:none;
+  stroke:#e85a70;
+  stroke-width:9;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* GAME */
+.grid{display:grid;grid-template-columns:repeat(3,80px);gap:14px}
+.cell{
+  width:80px;height:80px;
+  border:2px solid #e85a70;
+  border-radius:10px;
+  font-size:30px;
+  display:flex;align-items:center;justify-content:center;
+  color:#e85a70;
+}
+.middle{cursor:pointer}
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:22px;
+  padding:30px 26px;
+  max-width:420px;
+  width:100%;
+  box-shadow:0 18px 40px rgba(0,0,0,.12);
+  position:relative;
+}
+
+/* TOP IMAGE */
+.kitty-top{position:absolute;top:-30px;right:-20px;width:90px}
+
+/* LETTER */
+.letter-title{font-family:'Playfair Display',serif;letter-spacing:1px}
+.letter-sub{font-family:'Playfair Display',serif;font-size:22px;color:#e85a70;margin-bottom:14px}
+.letter-text{font-size:14px;line-height:1.8;color:#555}
+
+/* PHOTO SLIDER */
+.photo{
+  width:100%;
+  height:240px;
+  border-radius:14px;
+  object-fit:contain;
+  background:#fff8f0;
+  margin-top:14px;
+}
+
+/* BUTTON */
+.btn{
+  margin-top:16px;
+  padding:12px 22px;
+  border-radius:30px;
+  background:#ef5b6c;
+  color:#fff;
+  cursor:pointer;
+  display:inline-block;
+  font-size:16px;
+}
+
+/* MUSIC */
+.music-cover{
+  width:180px;
+  height:180px;
+  border-radius:16px;
+  object-fit:cover;
+  margin:20px auto 18px;
+  display:block;
+}
+.song-title{font-size:18px;font-weight:500}
+.song-artist{font-size:14px;color:#777;margin-bottom:16px}
+.music-controls{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:22px;
+}
+.music-btn{
+  width:46px;height:46px;
+  border-radius:50%;
+  background:#e85a70;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  cursor:pointer;
+}
+.music-btn.play{
+  width:60px;height:60px;font-size:26px;
+}
+
+/* FINAL */
+.thank{font-family:'Playfair Display',serif;font-size:28px}
+.thank span{color:#e85a70}
+.final-text{margin-top:14px;color:#666}
+.tap{margin-top:16px;color:#999;font-size:14px}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1" onclick="go(2)">
+  <div>
+    <div class="small">FOR MY ❤️</div>
+    <div class="title">I am <span>SORRY</span></div>
+    <div class="subtitle">I made this specially just for you.</div>
+
+    <div class="heart-box">
+      <img src="hello_kitty2-removebg-preview.png" class="heart-img">
+      <svg class="heart-svg" viewBox="0 0 256 240">
+        <path d="M128 220 C40 160 10 110 10 70 C10 30 45 10 75 30 C95 42 110 60 128 82 C146 60 161 42 181 30 C211 10 246 30 246 70 C246 110 216 160 128 220Z"/>
+      </svg>
+    </div>
+
+    <div class="tap">Tap anywhere</div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <div class="grid">
+    <div class="cell">❤️</div><div class="cell">❌</div><div class="cell">❌</div>
+    <div class="cell">❌</div><div class="cell middle" id="mid"></div><div class="cell">❌</div>
+    <div class="cell">❌</div><div class="cell">❌</div><div class="cell">❤️</div>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3" onclick="go(4)">
+  <div>
+    <div class="card">
+      <img class="kitty-top" src="human-removebg-preview.png">
+      <div class="letter-title">A LETTER</div>
+      <div class="letter-sub">FOR YOU 💌</div>
+      <div class="letter-text">
+        I’m sorry for the moments I hurt you.<br>
+        You are the most precious part of my life, and without you, everything feels incomplete.<br>
+        Please know that my love for you is real, pure, and forever.<br>
+        You mean everything to me ❤️<br><br>
+        With all my love — <b>Your baby</b>
+      </div>
+    </div>
+    <div class="tap">Tap anywhere</div>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <div class="card">
+    <img class="kitty-top" src="kitty22-removebg-preview.png">
+    <h3>Special Card</h3>
+    <small>From: Me &nbsp;&nbsp; To: My Love</small>
+
+    <img id="photoPlayer" class="photo" src="video6.gif">
+
+    <div class="btn" onclick="nextPhoto()">Next</div>
+    <div style="margin-top:12px;color:#e85a70">
+      From now to validation forever ❤️
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+  <div class="card">
+    <img class="kitty-top" src="kitty.png">
+
+    <img id="musicImage" class="music-cover" src="real.jpg">
+    <div class="song-title" id="songName">Perfect</div>
+    <div class="song-artist" id="songArtist">Ed Sheeran</div>
+
+    <div class="music-controls">
+      <div class="music-btn" onclick="prevSong()">⏮</div>
+      <div class="music-btn play" onclick="playPause()" id="playBtn">▶</div>
+      <div class="music-btn" onclick="nextSong()">⏭</div>
+    </div>
+
+    <audio id="audio"></audio>
+  </div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+  <div class="card">
+    <div class="thank">Thank You<br><span>For Being Mine 🤍</span></div>
+    <div class="final-text">You are my forever.</div>
+  </div>
+</div>
+
+<script>
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+
+/* GAME */
+mid.onclick=()=>{mid.innerHTML='❤️';setTimeout(()=>go(3),600);};
+
+/* PHOTO SLIDER */
+const photos=["video6.gif","video11.gif","video3.gif"];
+let pIndex=0;
+const photoPlayer=document.getElementById("photoPlayer");
+function nextPhoto(){
+  pIndex++;
+  if(pIndex<photos.length){
+    photoPlayer.src=photos[pIndex];
+  }else{
+    go(5);
+  }
+}
+
+/* MUSIC */
+const songs=[
+ {name:"Perfect",artist:"Ed Sheeran",file:"Ed.mp3",image:"real.jpg"},
+ {name:"Until I Found You",artist:"Stephen Sanchez",file:"You.mp3",image:"love.jpeg"},
+ {name:"Back to December",artist:"Taylor Swift",file:"swift.mp3",image:"love2.jpeg"}
+];
+let s=0;
+const audio=document.getElementById("audio");
+const songName=document.getElementById("songName");
+const songArtist=document.getElementById("songArtist");
+const musicImage=document.getElementById("musicImage");
+const playBtn=document.getElementById("playBtn");
+
+function loadSong(){
+  audio.src=songs[s].file;
+  songName.innerText=songs[s].name;
+  songArtist.innerText=songs[s].artist;
+  musicImage.src=songs[s].image;
+}
+loadSong();
+
+function playPause(){
+  if(audio.paused){audio.play();playBtn.innerText="⏸";}
+  else{audio.pause();playBtn.innerText="▶";}
+}
+function nextSong(){
+  if(s===songs.length-1){go(6);return;}
+  s++;loadSong();audio.play();playBtn.innerText="⏸";
+}
+function prevSong(){
+  s=(s-1+songs.length)%songs.length;
+  loadSong();audio.play();playBtn.innerText="⏸";
+}
+</script>
+
+</body>
+</html>
